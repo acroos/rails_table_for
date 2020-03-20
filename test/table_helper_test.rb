@@ -7,8 +7,17 @@ class TestTableHelper < Minitest::Test
   include TableHelper, ActionView::Context, ActionView::Helpers::TagHelper
 
   def test_empty_table
-    @records = Minitest::Mock.new
+    @records = []
     html = table_for(@records)
     assert_equal '<table></table>', html
+  end
+
+  def test_simplest_table
+    @records = Array.new(1) do 
+      record = Minitest::Mock.new
+      record.expect :id, '1'
+    end
+    html = table_for(@records)
+    assert_equal '<table><thead><tr><th>id</th></tr></thead><tbody><tr><td>1</td></tr></tbody></table>', html
   end
 end
