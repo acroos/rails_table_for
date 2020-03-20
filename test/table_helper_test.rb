@@ -6,15 +6,8 @@ require_relative '../lib/rails_table_for/table_helper'
 class TestTableHelper < Minitest::Test
   include TableHelper, ActionView::Context, ActionView::Helpers::TagHelper
 
-  def setup
-    @records = [0..10].map do 
-      record = Minitest::Mock.new
-      # TODO: expect some calls
-      record
-    end
-  end
-
-  def test_es
+  def test_empty_table
+    @records = Minitest::Mock.new
     html = table_for(@records)
     assert_equal '<table></table>', html
   end
