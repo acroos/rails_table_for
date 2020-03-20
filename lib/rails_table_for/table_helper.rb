@@ -1,6 +1,7 @@
 module TableHelper
   def table_for(collection, *args, &block)
-    'table'
+    content_tag :table do
+    end
   end
 end
 

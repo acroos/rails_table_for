@@ -4,7 +4,8 @@ require 'minitest/autorun'
 require_relative '../lib/rails_table_for/table_helper'
 
 class TestTableHelper < Minitest::Test
-  include TableHelper
+  include TableHelper, ActionView::Context, ActionView::Helpers::TagHelper
+
   def setup
     @records = [0..10].map do 
       record = Minitest::Mock.new
@@ -14,7 +15,7 @@ class TestTableHelper < Minitest::Test
   end
 
   def test_es
-    output = table_for(@records)
-    assert_equal 'table', output
+    html = table_for(@records)
+    assert_equal '<table></table>', html
   end
 end
