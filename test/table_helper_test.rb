@@ -4,7 +4,7 @@ require 'minitest/autorun'
 require_relative '../lib/rails_table_for/table_helper'
 
 class TestTableHelper < Minitest::Test
-  include TableHelper, ActionView::Context, ActionView::Helpers::TagHelper
+  include TableHelper, ActionView::Context
 
   def test_empty_table
     @records = []

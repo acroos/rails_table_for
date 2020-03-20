@@ -1,4 +1,6 @@
 module TableHelper
+  include ActionView::Helpers::TagHelper
+
   def table_for(records, *args, &block)
     content_tag :table do
       head(records) + body(records)
