@@ -15,6 +15,8 @@ class TestTableHelper < Minitest::Test
   def test_simplest_table
     @records = Array.new(1) do 
       record = Minitest::Mock.new
+      record.expect :primary_key, 'id'
+      record.expect :primary_key, 'id'
       record.expect :id, '1'
     end
     html = table_for(@records)
