@@ -25,7 +25,7 @@ class TestTableHelper < Minitest::Test
   private
   def test_html_output(actual_html)
     test_name = caller_locations[0].label
-    actual_html = remove_all_whitespace(actual_html)
+    actual_html = minify_html(actual_html)
     expected_html = fetch_test_html(test_name)
     assert_equal expected_html, actual_html
   end
@@ -33,10 +33,10 @@ class TestTableHelper < Minitest::Test
   def fetch_test_html(test_name)
     path = File.join(__dir__, 'data', "#{test_name}.html")
     formatted_html = File.read(path)
-    remove_all_whitespace(formatted_html)
+    minify_html(formatted_html)
   end
 
-  def remove_all_whitespace(text)
-    text.gsub(/\s/, '')
+  def minify_html(text)
+    text.gsub(/>\s*</, '><')
   end
 end
