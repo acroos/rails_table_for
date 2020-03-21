@@ -7,23 +7,26 @@ class TestTableHelper < Minitest::Test
   include TableHelper, ActionView::Context
 
   def test_no_table
-    @records = []
-    html = table_for(@records, columns: [:id])
+    records = []
+    html = table_for(records, columns: [:id])
     assert_equal '', html
   end
 
   def test_simplest_table
-    @records = Array.new(1) do 
-      record = Minitest::Mock.new
-      2.times { record.expect :primary_key, 'id' }
-      record.expect :id, '1'
-    end
-    html = table_for(@records, columns: [:id])
-    test_html_output(html)
+    records = mock_records([:id], count: 1)
+    html = table_for(records, columns: [:id])
+    check_html_output(html)
+  end
+
+  def test_two_columns_table
+    columns = [:col0, :col1]
+    records = mock_records(columns, count: 1)
+    html = table_for(records, columns: columns)
+    check_html_output(html)
   end
 
   private
-  def test_html_output(actual_html)
+  def check_html_output(actual_html)
     test_name = caller_locations[0].label
     actual_html = minify_html(actual_html)
     expected_html = fetch_test_html(test_name)
@@ -38,5 +41,15 @@ class TestTableHelper < Minitest::Test
 
   def minify_html(text)
     text.gsub(/>\s*</, '><')
+  end
+
+  def mock_records(columns, count:)
+    count.times.map do |index|
+      record = Minitest::Mock.new
+      columns.each do |column|
+        record.expect column, "row#{index}"
+      end
+      record
+    end
   end
 end

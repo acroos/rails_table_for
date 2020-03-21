@@ -18,25 +18,21 @@ class Table
   private
   def table(records)
     content_tag :table do
-      [head(records), body(records)].join.html_safe
+      [head, body(records)].join.html_safe
     end
   end
 
-  def head(records)
+  def head
     content_tag :thead do
-      records.map {|record| header_row(record) }.join.html_safe
+      content_tag :tr do
+        @columns.map {|column| content_tag :th, column }.join.html_safe
+      end
     end
   end
 
   def body(records)
     content_tag :tbody do
       records.map {|record| body_row(record) }.join.html_safe
-    end
-  end
-
-  def header_row(record)
-    content_tag :tr do
-      @columns.map {|column| content_tag :th, column }.join.html_safe
     end
   end
 
