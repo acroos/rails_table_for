@@ -13,14 +13,21 @@ class TestTableHelper < Minitest::Test
   end
 
   def test_simplest_table
-    records = mock_records([:id], count: 1)
+    records = mock_records([:id], rows: 1)
     html = table_for(records, columns: [:id])
     check_html_output(html)
   end
 
   def test_two_columns_table
     columns = [:col0, :col1]
-    records = mock_records(columns, count: 1)
+    records = mock_records(columns, rows: 1)
+    html = table_for(records, columns: columns)
+    check_html_output(html)
+  end
+
+  def test_two_rows_table
+    columns = [:col0]
+    records = mock_records(columns, rows: 2)
     html = table_for(records, columns: columns)
     check_html_output(html)
   end
@@ -43,8 +50,8 @@ class TestTableHelper < Minitest::Test
     text.gsub(/>\s*</, '><')
   end
 
-  def mock_records(columns, count:)
-    count.times.map do |index|
+  def mock_records(columns, rows:)
+    rows.times.map do |index|
       record = Minitest::Mock.new
       columns.each do |column|
         record.expect column, "row#{index}"
