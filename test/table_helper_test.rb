@@ -6,10 +6,10 @@ require 'rails_table_for/table_helper'
 class TestTableHelper < Minitest::Test
   include TableHelper, ActionView::Context
 
-  def test_empty_table
+  def test_no_table
     @records = []
-    html = table_for @records
-    test_html_output(html)
+    html = table_for(@records, columns: [:id])
+    assert_equal '', html
   end
 
   def test_simplest_table
@@ -18,7 +18,7 @@ class TestTableHelper < Minitest::Test
       2.times { record.expect :primary_key, 'id' }
       record.expect :id, '1'
     end
-    html = table_for @records
+    html = table_for(@records, columns: [:id])
     test_html_output(html)
   end
 
