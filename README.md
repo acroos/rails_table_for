@@ -2,7 +2,7 @@
 
 [![Gem Version][GV img]][Gem Version]
 
-HTML tables for ActiveRecord collections, made simple
+Generate HTML tables from ActiveRecord collections!
 
 ## Installation
 
