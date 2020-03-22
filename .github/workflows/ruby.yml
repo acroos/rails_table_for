@@ -1,8 +1,6 @@
 name: Run Minitest
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
