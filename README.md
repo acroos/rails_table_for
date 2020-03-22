@@ -1,8 +1,6 @@
 # RailsTableFor
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails_table_for`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Generate HTML tables from ActiveRecord collections!
 
 ## Installation
 
@@ -22,14 +20,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In a view in your rails project:
+```ruby
+<%= table_for @records, columns: [:field_one] do |table| %>
+  <% column :field_two %>
+  <% column :field_three, title: 'Custom Title' %>
+  <% column title: 'Custom Value' do |record| %>
+    <% "Field four equals: #{record.field_four}" %>
+  <% end %>
+<% end %>
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+- to install dependencies: `bundle install`
+- to run tests: `bundle exec rake` (or `rake test`)
+- to build local `.gem` file: `bundle exec rake build`
+- to install gem on your machine: `bundle exec rake install`
+- to bump the version: `bundle exec bump (patch|minor|major)`
+- to release: `bundle exec rake release`
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rails_table_for.
+Bug reports and pull requests are welcome on GitHub at https://github.com/acroos/rails_table_for.
