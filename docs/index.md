@@ -1,6 +1,8 @@
 ---
 layout: default
+title: rails_table_for
 ---
+
 
 # Installation
 
