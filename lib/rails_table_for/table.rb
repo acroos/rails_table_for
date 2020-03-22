@@ -1,4 +1,5 @@
-require 'rails_table_for/column'
+require 'rails_table_for/block_column'
+require 'rails_table_for/field_column'
 
 class Table
   include ActionView::Helpers::TagHelper
@@ -7,13 +8,21 @@ class Table
 
   def initialize(columns:)
     @columns = columns.map do |field|
-      Column.new(field)
+      FieldColumn.new(field)
     end
   end
 
-  def column(field, **args)
+  def column(field=nil, **args, &block)
+    if field.nil? && !block_given?
+      raise 'Must provide either field or block'
+    end
     title = args[:title] || args['title']
-    @columns << Column.new(field, title)
+
+    if block_given?
+      @columns << BlockColumn.new(block, title)
+    else
+      @columns << FieldColumn.new(field, title)
+    end
   end
 
   def build(records)
@@ -44,7 +53,7 @@ class Table
 
   def body_row(record)
     content_tag :tr do
-      @columns.map {|column| content_tag :td, record.send(column.field) }.join.html_safe
+      @columns.map {|column| content_tag :td, column.value_for(record) }.join.html_safe
     end
   end
 end
