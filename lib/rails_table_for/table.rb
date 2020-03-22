@@ -1,13 +1,19 @@
+require 'rails_table_for/column'
+
 class Table
   include ActionView::Helpers::TagHelper
 
   attr_accessor :output_buffer
 
   def initialize(columns:)
-    if columns.nil?
-      raise ArgumentError.new("Columns must not be nil")
+    @columns = columns.map do |field|
+      Column.new(field)
     end
-    @columns = columns
+  end
+
+  def column(field, **args)
+    title = args[:title] || args['title']
+    @columns << Column.new(field, title)
   end
 
   def build(records)
@@ -25,7 +31,7 @@ class Table
   def head
     content_tag :thead do
       content_tag :tr do
-        @columns.map {|column| content_tag :th, column }.join.html_safe
+        @columns.map {|column| content_tag :th, column.title }.join.html_safe
       end
     end
   end
@@ -38,7 +44,7 @@ class Table
 
   def body_row(record)
     content_tag :tr do
-      @columns.map {|column| content_tag :td, record.send(column) }.join.html_safe
+      @columns.map {|column| content_tag :td, record.send(column.field) }.join.html_safe
     end
   end
 end

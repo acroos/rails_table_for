@@ -32,6 +32,14 @@ class TestTableHelper < Minitest::Test
     check_html_output(html)
   end
 
+  def test_table_with_block
+    records = mock_records([:col0], rows: 1)
+    html = table_for(records) do |table|
+      table.column :col0
+    end
+    check_html_output(html)
+  end
+
   private
   def check_html_output(actual_html)
     test_name = caller_locations[0].label
