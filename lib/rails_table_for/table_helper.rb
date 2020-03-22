@@ -3,8 +3,8 @@ require 'rails_table_for/table'
 module TableHelper
   include ActionView::Helpers::TagHelper
 
-  def table_for(records, columns: [])
-    table = Table.new(columns: columns)
+  def table_for(records, **options)
+    table = Table.new(options)
     if block_given?
       yield table
     end

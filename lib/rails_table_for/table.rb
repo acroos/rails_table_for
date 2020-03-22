@@ -6,17 +6,19 @@ class Table
 
   attr_accessor :output_buffer
 
-  def initialize(columns:)
+  def initialize(**options)
+    columns = options[:columns] || []
     @columns = columns.map do |field|
       FieldColumn.new(field)
     end
+    @options = options
   end
 
-  def column(field=nil, **args, &block)
+  def column(field=nil, **options, &block)
     if field.nil? && !block_given?
       raise 'Must provide either field or block'
     end
-    title = args[:title] || args['title']
+    title = options[:title] || options['title']
 
     if block_given?
       @columns << BlockColumn.new(block, title)
@@ -32,7 +34,7 @@ class Table
 
   private
   def table(records)
-    content_tag :table do
+    content_tag :table, class: @options[:class] do
       [head, body(records)].join.html_safe
     end
   end
