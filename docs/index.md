@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: default
 ---
 
 # `rails_table_for` docs
