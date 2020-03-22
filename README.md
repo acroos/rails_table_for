@@ -16,18 +16,9 @@ And then execute:
 
     $ bundle
 
-## Usage
+## Documentation
 
-In a view in your rails project:
-```ruby
-<%= table_for @records, columns: [:field_one] do |table| %>
-  <% column :field_two %>
-  <% column :field_three, title: 'Custom Title' %>
-  <% column title: 'Custom Value' do |record| %>
-    <% "Field four equals: #{record.field_four}" %>
-  <% end %>
-<% end %>
-```
+Check out [the docs site](https://acroos.site/rails_table_for)
 
 ## Development
 
