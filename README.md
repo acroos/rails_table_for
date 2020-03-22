@@ -1,5 +1,7 @@
 # RailsTableFor
 
+[![Gem Version][GV img]][Gem Version]
+
 Generate HTML tables from ActiveRecord collections!
 
 ## Installation
@@ -43,3 +45,6 @@ In a view in your rails project:
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/acroos/rails_table_for.
+
+[Gem Version]: https://rubygems.org/gems/rails_table_for
+[GV img]: https://badge.fury.io/rb/rails_table_for.png
