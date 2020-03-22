@@ -1,4 +1,4 @@
-name: Ruby Gem
+name: Push to Rubygems.org
 
 on:
   push:
@@ -24,6 +24,7 @@ jobs:
         printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
         gem install bundler
         bundle install --jobs 4 --retry 3
-        bundle exec rake release
+        bundle exec rake build
+        gem push pkg/rails_table_for-*.gem
       env:
         GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
