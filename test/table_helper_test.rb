@@ -40,6 +40,14 @@ class TestTableHelper < Minitest::Test
     check_html_output(html)
   end
 
+  def test_table_with_custom_column_title
+    records = mock_records([:col0], rows:1)
+    html = table_for(records) do |table|
+      table.column :col0, title: 'CUSTOM TITLE'
+    end
+    check_html_output(html)
+  end
+
   private
   def check_html_output(actual_html)
     test_name = caller_locations[0].label
