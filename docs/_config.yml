@@ -1,7 +1,5 @@
 title: rails_table_for docs
 email: roos.austin@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Documentation site for the rails_table_for gem
 baseurl: "/rails_table_for" # the subpath of your site, e.g. /blog
 url: "https://acroos.site" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  acroos

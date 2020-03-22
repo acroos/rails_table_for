@@ -2,9 +2,7 @@
 layout: default
 ---
 
-# `rails_table_for` docs
-
-## Installation
+# Installation
 
 Add this line to your application's Gemfile:
 
@@ -18,7 +16,7 @@ And then execute:
 $ bundle
 ```
 
-## Simple Table
+# Simple Table
 
 For the simplest table, just pass an ActiveRecord collection and an array of columns
 ```
