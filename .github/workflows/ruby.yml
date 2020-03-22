@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  run_minitest:
 
     runs-on: ubuntu-latest
 
