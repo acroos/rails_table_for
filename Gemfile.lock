@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_table_for (0.1.2)
+    rails_table_for (0.2.0)
       rails (>= 5)
 
 GEM
