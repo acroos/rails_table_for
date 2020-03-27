@@ -21,9 +21,9 @@ class Table
     title = options[:title] || options['title']
 
     if block_given?
-      @columns << BlockColumn.new(block, title)
+      @columns << BlockColumn.new(block, title: title)
     else
-      @columns << FieldColumn.new(field, title)
+      @columns << FieldColumn.new(field, title: title)
     end
   end
 
