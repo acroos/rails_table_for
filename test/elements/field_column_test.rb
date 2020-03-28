@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'rails_table_for/elements/field_column'
 require 'byebug'
  
 module Elements
