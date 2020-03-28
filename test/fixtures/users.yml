@@ -8,5 +8,6 @@ one:
   id: 1
 # column: value
 #
-two: {}
+two:
+  id: 2
 # column: value

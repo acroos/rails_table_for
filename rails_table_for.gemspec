@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 2.1', '>= 2.1.4'
   spec.add_development_dependency 'byebug', '~> 11.1', '>= 11.1.1'
   spec.add_development_dependency 'minitest', '~> 5.14'
+  spec.add_development_dependency 'nokogiri', '~> 1.10', '>= 1.10.9'
   spec.add_development_dependency 'rake', '~> 13.0', '>= 13.0.1'
   spec.add_development_dependency 'sqlite3', '~> 1.4', '>= 1.4.2'
 end

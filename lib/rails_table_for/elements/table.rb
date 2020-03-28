@@ -29,6 +29,7 @@ module Elements
 
     def build(records)
       return '' if records.nil? || records.empty?
+      return '' if @columns.nil? || @columns.empty?
       table(records)
     end
 
