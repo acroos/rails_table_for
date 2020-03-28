@@ -1,5 +1,5 @@
 require 'rails_table_for/railtie'
-require 'rails_table_for/action_view_ext'
+require 'rails_table_for/table_helper'
 
 module RailsTableFor
   # Your code goes here...
