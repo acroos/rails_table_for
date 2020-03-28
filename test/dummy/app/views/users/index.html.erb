@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<%= table_for @users do |table| %>
+  <% table.column :id, auto_link: true %>
+  <% table.column {|user| link_to 'Show', user } %>
+  <% table.column {|user| link_to 'Edit', edit_user_path(user) } %>
+  <% table.column {|user| link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } } %>
+<% end %>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
