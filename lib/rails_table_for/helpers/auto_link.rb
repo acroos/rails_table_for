@@ -1,5 +1,5 @@
 module Helpers
-  module AutoLinkHelper
+  module AutoLink
     include ActionView::Helpers::UrlHelper
 
     def auto_link(record, text)

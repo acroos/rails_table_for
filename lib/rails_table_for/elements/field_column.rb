@@ -1,9 +1,9 @@
-require 'rails_table_for/helpers/auto_link_helper'
+require 'rails_table_for/helpers/auto_link'
 require 'rails_table_for/elements/column'
 
 module Elements
   class FieldColumn < Column
-    include Helpers::AutoLinkHelper
+    include Helpers::AutoLink
     attr_reader :title
 
     def initialize(field, **options)
