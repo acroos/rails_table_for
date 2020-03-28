@@ -101,3 +101,17 @@ Assuming the route exists to show that record, this will generate HTML like this
   </tbody>
 </table>
 ```
+
+# Auto-linking columns
+
+Automatically get a link to the record represented by each row like this:
+
+```
+<%=
+table_for @records do |table|
+  table.column :id, auto_link: true
+end
+%>
+```
+
+If no route can be found for the record, a `NoMethodError`  will be thrown.
