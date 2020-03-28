@@ -1,6 +1,6 @@
 require 'rails_table_for/elements/table'
 
-class ActionView::Base
+module TableHelper
   include ActionView::Helpers::TagHelper
 
   def table_for(records, **options)
@@ -12,4 +12,8 @@ class ActionView::Base
       table.build(records)
     end
   end
+end
+
+ActionView::Base.class_eval do
+  include TableHelper
 end
