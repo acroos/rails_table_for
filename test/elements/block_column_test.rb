@@ -50,10 +50,7 @@ module Elements
       block = -> record { record.id }
       column = BlockColumn.new(block, auto_link: true)
       value = column.td(@user)
-      assert_match(/^<td><a href=".*?">#{@user.id}<\/a><\/td>$/, value)
+      assert_match(link_pattern_for_value(@user.id), value)
     end
-
-    private
-
   end
 end
