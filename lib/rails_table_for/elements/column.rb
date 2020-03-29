@@ -1,7 +1,7 @@
 module Elements
   class Column
     def th
-      content_tag :th, @title
+      content_tag :th, title
     end
 
     def td(record)

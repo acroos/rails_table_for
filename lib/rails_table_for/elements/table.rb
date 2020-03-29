@@ -5,7 +5,8 @@ module Elements
   class Table
     include ActionView::Helpers::TagHelper
 
-    attr_accessor :output_buffer
+    attr_accessor :columns, :options, :output_buffer
+    private :columns, :options
 
     def initialize(**options)
       columns = options[:columns] || []
@@ -21,15 +22,15 @@ module Elements
       end
 
       if block_given?
-        @columns << BlockColumn.new(block, options)
+        columns << BlockColumn.new(block, options)
       else
-        @columns << FieldColumn.new(field, options)
+        columns << FieldColumn.new(field, options)
       end
     end
 
     def build(records)
       return '' if records.nil? || records.empty?
-      return '' if @columns.nil? || @columns.empty?
+      return '' if columns.nil? || columns.empty?
       table(records)
     end
 
@@ -43,7 +44,7 @@ module Elements
     def head
       content_tag :thead do
         content_tag :tr do
-          @columns.map(&:th).join.html_safe
+          columns.map(&:th).join.html_safe
         end
       end
     end
@@ -56,7 +57,7 @@ module Elements
 
     def body_row(record)
       content_tag :tr do
-        @columns.map {|column| column.td(record) }.join.html_safe
+        columns.map {|column| column.td(record) }.join.html_safe
       end
     end
   end
