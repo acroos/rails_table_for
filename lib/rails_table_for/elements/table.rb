@@ -43,7 +43,7 @@ module Elements
     def head
       content_tag :thead do
         content_tag :tr do
-          @columns.map {|column| content_tag :th, column.title }.join.html_safe
+          @columns.map(&:th).join.html_safe
         end
       end
     end
@@ -56,7 +56,7 @@ module Elements
 
     def body_row(record)
       content_tag :tr do
-        @columns.map {|column| content_tag :td, column.value_for(record) }.join.html_safe
+        @columns.map {|column| column.td(record) }.join.html_safe
       end
     end
   end

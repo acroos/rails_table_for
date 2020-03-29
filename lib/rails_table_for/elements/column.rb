@@ -1,7 +1,11 @@
 module Elements
   class Column
-    def value_for(record)
-      raise "Not implemented"
+    def th
+      raise 'Not implemented'
+    end
+
+    def td(record)
+      raise 'Not implemented'
     end
   end
 end
