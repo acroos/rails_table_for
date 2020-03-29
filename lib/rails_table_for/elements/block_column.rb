@@ -11,10 +11,6 @@ module Elements
       @auto_link = options[:auto_link] || false
     end
 
-    def th
-      content_tag :th, @title
-    end
-
     def td(record)
       text = @block.call(record)
       content = @auto_link ? auto_link(record, text) : text
