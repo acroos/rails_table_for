@@ -3,8 +3,7 @@ require 'rails_table_for/elements/column'
 
 module Elements
   class FieldColumn < Column
-    include Helpers::AutoLink
-    attr_reader :title
+    include Helpers::AutoLink, ActionView::Helpers::TagHelper
 
     def initialize(field, **options)
       if field.nil?
@@ -15,9 +14,14 @@ module Elements
       @auto_link = options[:auto_link] || false
     end
 
-    def value_for(record)
+    def th
+      content_tag :th, @title
+    end
+
+    def td(record)
       text = record.send(@field)
-      @auto_link ? auto_link(record, text) : text
+      content = @auto_link ? auto_link(record, text) : text
+      content_tag :td, content
     end
   end
 end
