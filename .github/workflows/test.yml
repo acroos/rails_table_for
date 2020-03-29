@@ -1,4 +1,4 @@
-name: Tests
+name: Build & Test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  run_minitest:
+  build_and_test:
 
     runs-on: ubuntu-latest
 
@@ -18,10 +18,12 @@ jobs:
       with:
         ruby-version: 2.6.x
     - name: Install libsqlite3-dev
-      run: |
-        sudo apt-get install -y libsqlite3-dev
-    - name: Build and test
+      run: sudo apt-get install -y libsqlite3-dev
+    - name: Build
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
-        bundle exec rake
+    - name: Rubocop
+      run: bundle exec rake rubocop
+    - name: Test
+      run: bundle exec rake

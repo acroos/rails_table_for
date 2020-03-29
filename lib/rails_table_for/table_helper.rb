@@ -1,18 +1,24 @@
+# frozen_string_literal: true
+
 require 'rails_table_for/elements/table'
 
 module TableHelper
   include ActionView::Helpers::TagHelper
 
   def table_for(records, **options)
-    options.merge({
+    options.merge(request_options)
+    table = Elements::Table.new(options)
+    yield table if block_given?
+    table.build(records)
+  end
+
+  private
+
+  def request_options
+    {
       request_path: request.fullpath,
       request_params: request.params
-    })
-    table = Elements::Table.new(options)
-    if block_given?
-      yield table
-    end
-    table.build(records)
+    }
   end
 end
 

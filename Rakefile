@@ -24,4 +24,12 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
+require 'rubocop/rake_task'
+
+desc 'Run RuboCop on the lib directory'
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.patterns = ['lib/**/*.rb']
+  task.fail_on_error = true
+end
+
 task default: :test

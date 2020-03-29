@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest', '~> 5.14'
   spec.add_development_dependency 'nokogiri', '~> 1.10', '>= 1.10.9'
   spec.add_development_dependency 'rake', '~> 13.0', '>= 13.0.1'
+  spec.add_development_dependency 'rubocop', '~> 0.80', '>= 0.80.1'
   spec.add_development_dependency 'sqlite3', '~> 1.4', '>= 1.4.2'
 end
 
