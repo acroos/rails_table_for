@@ -5,7 +5,7 @@ module TableHelper
 
   def table_for(records, **options)
     options.merge({
-      request_url: request.original_url,
+      request_path: request.fullpath,
       request_params: request.params
     })
     table = Elements::Table.new(options)
