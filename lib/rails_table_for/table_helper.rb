@@ -4,13 +4,15 @@ module TableHelper
   include ActionView::Helpers::TagHelper
 
   def table_for(records, **options)
-    def table_for(records, **options)
-      table = Elements::Table.new(options)
-      if block_given?
-        yield table
-      end
-      table.build(records)
+    options.merge({
+      request_url: request.original_url,
+      request_params: request.params
+    })
+    table = Elements::Table.new(options)
+    if block_given?
+      yield table
     end
+    table.build(records)
   end
 end
 
