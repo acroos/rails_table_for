@@ -1,7 +1,7 @@
 module Elements
   class Column
     def th
-      raise 'Not implemented'
+      content_tag :th, @title
     end
 
     def td(record)
