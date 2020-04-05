@@ -7,9 +7,9 @@ module TableHelper
 
   def table_for(records, **options)
     options.merge(request_options)
-    table = Elements::Table.new(options)
+    table = Elements::Table.new(records, options)
     yield table if block_given?
-    table.build(records)
+    table.to_s
   end
 
   private

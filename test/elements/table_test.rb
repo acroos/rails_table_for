@@ -9,31 +9,31 @@ module Elements
     end
 
     def test_columns_in_constructor
-      table = Table.new(columns: [:id])
+      table = Table.new(@users, columns: [:id])
       assert_id_only_table table
     end
 
     def test_no_columns
-      table = Table.new
-      html = table.build(@users)
+      table = Table.new(@users)
+      html = table.to_s
       assert_equal '', html
     end
 
     def test_field_column
-      table = Table.new
+      table = Table.new(@users)
       table.column(:id)
       assert_id_only_table table
     end
 
     def test_block_column
-      table = Table.new
+      table = Table.new(@users)
       table.column(title: 'Id') {|record| record.id }
       assert_id_only_table table
     end
 
     private
     def assert_id_only_table(table)
-      html = table.build(@users)
+      html = table.to_s
       doc = Nokogiri::HTML(html)
       refute_nil doc.xpath('//table')
       row_count = doc.xpath('//tbody//tr').count

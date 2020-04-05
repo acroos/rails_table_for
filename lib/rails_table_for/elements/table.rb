@@ -7,10 +7,11 @@ module Elements
   class Table
     include ActionView::Helpers::TagHelper
 
-    attr_accessor :columns, :options, :output_buffer
-    private :columns, :options
+    attr_accessor :columns, :options, :output_buffer, :records
+    private :columns, :options, :records
 
-    def initialize(**options)
+    def initialize(records, **options)
+      @records = records
       columns = options[:columns] || []
       @columns = columns.map do |field|
         FieldColumn.new(field)
@@ -28,7 +29,7 @@ module Elements
       end
     end
 
-    def build(records)
+    def to_s
       return '' if records.nil? || records.empty?
       return '' if columns.nil? || columns.empty?
 
