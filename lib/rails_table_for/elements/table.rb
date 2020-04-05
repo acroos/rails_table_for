@@ -12,10 +12,8 @@ module Elements
 
     def initialize(records, **options)
       @records = records
-      columns = options[:columns] || []
-      @columns = columns.map do |field|
-        FieldColumn.new(field)
-      end
+      @columns = []
+      options[:columns]&.each { |field| column(field) }
       @options = options
     end
 
@@ -33,12 +31,12 @@ module Elements
       return '' if records.nil? || records.empty?
       return '' if columns.nil? || columns.empty?
 
-      table(records)
+      table
     end
 
     private
 
-    def table(records)
+    def table
       content_tag :table, class: @options[:class] do
         [head, body(records)].join.html_safe
       end
