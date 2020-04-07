@@ -10,7 +10,7 @@ module Elements
     include ActionView::Helpers::TagHelper
 
     attr_accessor :columns, :output_buffer, :page_size, :record_count, :records, :request_params,
-      :request_path
+                  :request_path
     private :columns, :page_size, :record_count, :records, :request_params, :request_path
 
     def initialize(records, **options)
