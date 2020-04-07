@@ -6,18 +6,18 @@ module TableHelper
   include ActionView::Helpers::TagHelper
 
   def table_for(records, **options)
-    options.merge(request_options)
-    table = Elements::Table.new(options)
+    options.merge!(request_options)
+    table = Elements::Table.new(records, options)
     yield table if block_given?
-    table.build(records)
+    table.to_s
   end
 
   private
 
   def request_options
     {
-      request_path: request.fullpath,
-      request_params: request.params
+      request_path: request.path,
+      request_params: request.params.except(:action, :controller)
     }
   end
 end

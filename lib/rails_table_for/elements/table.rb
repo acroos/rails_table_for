@@ -2,20 +2,25 @@
 
 require 'rails_table_for/elements/block_column'
 require 'rails_table_for/elements/field_column'
+require 'rails_table_for/helpers/paginate'
 
 module Elements
   class Table
+    include Helpers::Paginate
     include ActionView::Helpers::TagHelper
 
-    attr_accessor :columns, :options, :output_buffer
-    private :columns, :options
+    attr_accessor :columns, :output_buffer, :page_size, :record_count, :records, :request_params,
+                  :request_path
+    private :columns, :page_size, :record_count, :records, :request_params, :request_path
 
-    def initialize(**options)
-      columns = options[:columns] || []
-      @columns = columns.map do |field|
-        FieldColumn.new(field)
-      end
-      @options = options
+    def initialize(records, **options)
+      @records = records
+      @record_count = records.count
+      @columns = []
+      options[:columns]&.each { |field| column(field) }
+      @page_size = options[:page_size]
+      @request_path = options[:request_path]
+      @request_params = options[:request_params]
     end
 
     def column(field = nil, **options, &block)
@@ -28,18 +33,24 @@ module Elements
       end
     end
 
-    def build(records)
-      return '' if records.nil? || records.empty?
+    def to_s
+      return '' if record_count.zero?
       return '' if columns.nil? || columns.empty?
 
-      table(records)
+      draw
     end
 
     private
 
-    def table(records)
-      content_tag :table, class: @options[:class] do
-        [head, body(records)].join.html_safe
+    def draw
+      content_tag :div do
+        table + pagination_links
+      end
+    end
+
+    def table
+      content_tag :table do
+        head + body
       end
     end
 
@@ -51,9 +62,9 @@ module Elements
       end
     end
 
-    def body(records)
+    def body
       content_tag :tbody do
-        records.map { |record| body_row(record) }.join.html_safe
+        current_page_records.map { |record| body_row(record) }.join.html_safe
       end
     end
 
