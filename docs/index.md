@@ -3,6 +3,12 @@ layout: default
 title: rails_table_for
 ---
 
+# Introduciton
+
+No more writing out dozens of <tr>, <th>, <td> elements.  Write a few lines of ruby code (or even a single line) and
+get a lovely little table generated for you.  You can present data from your records directly with almost no work, or 
+do a little customization if you'd like something extra special.  More features are coming soon, but pagination
+already comes included (only if you want it).
 
 # Installation
 
@@ -18,100 +24,13 @@ And then execute:
 $ bundle
 ```
 
-# Simple Table
+# Code Examples
 
-For the simplest table, just pass an ActiveRecord collection and an array of columns
-```
-<%= table_for @records, columns: [:name] %>
-```
+- [Getting Started](./guides/getting-started) (a one-liner?!)
+- [Customizing Column Headers](./guides/customizing-column-headers)
+- [Customizing Row Values](./guides/customizing-row-values)
+- [Auto-linking Rows](./guides/auto-linking-rows)
 
-The columns must correspond to methods/properties on the record class.  The column header
-will be the method/property name "humanized".
+# Wanna Help?
 
-Example output:
-```html
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Austin</td>
-    </tr>
-  </tbody>
-</table>
-```
-
-# Customize Column Headers
-
-You can can change the default column headers by passing a block to `table_for` and using the `Table#column` method:
-
-```
-<%= table_for @records do |table| %>
-  <% table.column :name, title: 'Naam' %>
-<% end %>
-```
-
-The title of the column will now be `Naam` and the rest of the table will be the same as the first example:
-```html
-<table>
-  <thead>
-    <tr>
-      <th>Naam</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Austin</td>
-    </tr>
-  </tbody>
-</table>
-```
-
-# Pass Blocks to `Table#column`
-
-You can pass a block to the `Table#column` method to display values not directly accessible
-from the model's methods/properties:
-
-```
-<%= 
-table_for @records do |table|
-  table.column title: 'Link' do |record|
-    link_to record.name, record
-  end
-end
-%>
-```
-
-Assuming the route exists to show that record, this will generate HTML like this:
-
-```html
-<table>
-  <thead>
-    <tr>
-      <th>Link</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="/records/1">Record 1</a></td>
-    </tr>
-  </tbody>
-</table>
-```
-
-# Auto-linking columns
-
-Automatically get a link to the record represented by each row like this:
-
-```
-<%=
-table_for @records do |table|
-  table.column :id, auto_link: true
-end
-%>
-```
-
-If no route can be found for the record, a `NoMethodError`  will be thrown.
+Happily accepting bug reports, feature requests, and pull requests.  Visit https://github.com/acroos/rails_table_for
