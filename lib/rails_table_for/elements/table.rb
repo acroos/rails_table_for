@@ -35,7 +35,7 @@ module Elements
 
     def to_s
       return '' if record_count.zero?
-      return '' if columns.nil? || columns.empty?
+      return '' if columns.empty?
 
       draw
     end
