@@ -30,6 +30,7 @@ $ bundle
 - [Customizing Column Headers](./guides/customizing-column-headers)
 - [Customizing Row Values](./guides/customizing-row-values)
 - [Auto-linking Rows](./guides/auto-linking-rows)
+- [Pagination](./guides/pagination)
 
 # Wanna Help?
 
