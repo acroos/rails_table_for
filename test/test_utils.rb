@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TestUtils
   def td_for_value(value)
     "<td>#{value}</td>"
@@ -8,6 +10,6 @@ module TestUtils
   end
 
   def link_pattern_for_value(value)
-    /^<td><a href=".*?">#{value}<\/a><\/td>$/
+    %r{^<td><a href=".*?">#{value}</a></td>$}
   end
 end

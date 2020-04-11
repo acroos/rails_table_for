@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 require 'byebug'
 require 'nokogiri'
@@ -30,7 +32,7 @@ module RailsTableFor
 
       def test_block_column
         table = Table.new(@users, request_params: {})
-        table.column(title: 'Id') {|record| record.id }
+        table.column(title: 'Id', &:id)
         doc = html_doc_for table
         assert_basic_table doc
       end
@@ -46,13 +48,14 @@ module RailsTableFor
       def test_pagination_multiple_pages
         page_size = 1
         expected_links = 1
-        table = Table.new(@users, paginate: true, page_size: page_size, columns: [:id], request_path: 'path', request_params: {})
+        table = Table.new(@users, page_size: page_size, columns: [:id], request_path: 'path', request_params: {})
         doc = html_doc_for table
         assert_basic_table doc, expected_rows: page_size
         assert_pagination_link_count doc, expected_links
       end
 
       private
+
       def assert_basic_table(html_doc, expected_rows: @users.count)
         assert_is_table html_doc
         assert_col_count html_doc, 1

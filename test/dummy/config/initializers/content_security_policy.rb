@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Be sure to restart your server when you modify this file.
 
 # Define an application-wide content security policy
@@ -15,9 +16,6 @@
 #   # Specify URI for violation reports
 #   # policy.report_uri "/csp-violation-report-endpoint"
 # end
-
-# If you are using UJS then enable automatic nonce generation
-# Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
 
 # Set the nonce only to specific directives
 # Rails.application.config.content_security_policy_nonce_directives = %w(script-src)

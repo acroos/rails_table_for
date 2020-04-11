@@ -1,8 +1,19 @@
+AllCops:
+  Include:
+    - '**/Gemfile'
+    - 'lib/**/*.rb'
+    - 'test/**/*.rb'
+  Exclude:
+    - 'test/dummy/bin/*'
+    - 'test/dummy/db/schema.rb'
+
 Style/Documentation:
   Enabled: false
 
 Layout/LineLength:
   Max: 100
+  Exclude:
+    - 'test/elements/table_test.rb'
 
 Style/HashEachMethods:
   Enabled: true
