@@ -34,4 +34,4 @@ $ bundle
 
 # Wanna Help?
 
-Happily accepting bug reports, feature requests, and pull requests.  Visit https://github.com/acroos/rails_table_for
+Happily accepting bug reports, feature requests, and pull requests.  Visit [https://github.com/acroos/rails_table_for](https://github.com/acroos/rails_table_for)
