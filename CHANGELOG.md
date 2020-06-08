@@ -1,6 +1,13 @@
 # CHANGELOG
 ## Master
 
+## 0.3.2
+- Security updates
+
+## 0.3.1
+- Security updates
+- Documentation updates
+
 ---
 ## 0.3.0
 
