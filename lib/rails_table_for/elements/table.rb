@@ -22,6 +22,7 @@ module RailsTableFor
         @page_size = options[:page_size]
         @request_path = options[:request_path]
         @request_params = options[:request_params]
+        @table_class = options[:class]
       end
 
       def column(field = nil, **options, &block)
@@ -50,7 +51,7 @@ module RailsTableFor
       end
 
       def table
-        content_tag :table do
+        content_tag :table, class: @table_class do
           head + body
         end
       end

@@ -54,6 +54,13 @@ module RailsTableFor
         assert_pagination_link_count doc, expected_links
       end
 
+      def test_html_class
+        table = Table.new(@users, columns: [:id], request_params: {}, class: 'test-table-class')
+        doc = html_doc_for table
+        assert_basic_table doc
+        assert_table_class doc, 'test-table-class'
+      end
+
       private
 
       def assert_basic_table(html_doc, expected_rows: @users.count)
@@ -81,6 +88,10 @@ module RailsTableFor
 
       def assert_is_table(html_doc)
         refute_nil html_doc.xpath('//table')
+      end
+
+      def assert_table_class(html_doc, class_name)
+        refute_nil html_doc.xpath("//table[@class=\"#{class_name}\"]")
       end
 
       def html_doc_for(table)
